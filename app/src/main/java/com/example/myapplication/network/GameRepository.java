@@ -1,10 +1,10 @@
 package com.example.myapplication.network;
 
-import gr.aueb.dist.shared.BetRequest;
-import gr.aueb.dist.shared.Game;
-import gr.aueb.dist.shared.GameInfo;
-import gr.aueb.dist.shared.Message;
-import gr.aueb.dist.shared.SearchFilter;
+import shared.BetRequest;
+import shared.Game;
+import shared.GameInfo;
+import shared.Message;
+import shared.SearchFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;

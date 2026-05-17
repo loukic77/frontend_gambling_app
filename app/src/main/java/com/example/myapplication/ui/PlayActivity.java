@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.network.GameRepository;
-import gr.aueb.dist.shared.Game;
+import shared.Game;
 
 public class PlayActivity extends AppCompatActivity {
 

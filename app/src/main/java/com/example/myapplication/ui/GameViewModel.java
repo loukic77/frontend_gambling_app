@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.myapplication.network.GameRepository;
-import gr.aueb.dist.shared.BetRequest;
-import gr.aueb.dist.shared.Game;
-import gr.aueb.dist.shared.GameInfo;
-import gr.aueb.dist.shared.SearchFilter;
+import shared.BetRequest;
+import shared.Game;
+import shared.GameInfo;
+import shared.SearchFilter;
 import java.util.List;
 
 public class GameViewModel extends ViewModel {

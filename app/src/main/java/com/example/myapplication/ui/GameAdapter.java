@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
-import gr.aueb.dist.shared.GameInfo;
+import shared.GameInfo;
 import java.util.ArrayList;
 import java.util.List;
 
