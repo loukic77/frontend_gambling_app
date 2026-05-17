@@ -2,6 +2,7 @@ package com.example.myapplication.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class RateActivity extends AppCompatActivity {
         RatingBar ratingBar = findViewById(R.id.rating_bar);
 
         findViewById(R.id.btn_submit_rate).setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_click));
             String gName = etGameName.getText().toString();
             int stars = (int) ratingBar.getRating();
             if (gName.isEmpty()) {

@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lime">#AEEA00</color>
+    <color name="lime_dark">#82B100</color>
+    <color name="glass_dark">#B3000000</color>
+    <color name="glass_input">#33FFFFFF</color>
+    <color name="lime_glow">#4DAEEA00</color>
 </resources>

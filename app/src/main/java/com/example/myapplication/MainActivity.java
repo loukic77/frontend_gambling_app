@@ -2,6 +2,9 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.ui.PlayActivity;
 import com.example.myapplication.ui.RateActivity;
@@ -15,16 +18,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.card_search).setOnClickListener(v ->
-                startActivity(new Intent(this, SearchActivity.class)));
+        Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.button_click);
 
-        findViewById(R.id.card_play).setOnClickListener(v ->
-                startActivity(new Intent(this, PlayActivity.class)));
+        View cardSearch = findViewById(R.id.card_search);
+        cardSearch.setOnClickListener(v -> {
+            v.startAnimation(scaleAnim);
+            startActivity(new Intent(this, SearchActivity.class));
+        });
 
-        findViewById(R.id.card_rate).setOnClickListener(v ->
-                startActivity(new Intent(this, RateActivity.class)));
+        View cardPlay = findViewById(R.id.card_play);
+        cardPlay.setOnClickListener(v -> {
+            v.startAnimation(scaleAnim);
+            startActivity(new Intent(this, PlayActivity.class));
+        });
 
-        findViewById(R.id.card_balance).setOnClickListener(v ->
-                startActivity(new Intent(this, AddBalanceActivity.class)));
+        View cardRate = findViewById(R.id.card_rate);
+        cardRate.setOnClickListener(v -> {
+            v.startAnimation(scaleAnim);
+            startActivity(new Intent(this, RateActivity.class));
+        });
+
+        View cardBalance = findViewById(R.id.card_balance);
+        cardBalance.setOnClickListener(v -> {
+            v.startAnimation(scaleAnim);
+            startActivity(new Intent(this, AddBalanceActivity.class));
+        });
     }
 }

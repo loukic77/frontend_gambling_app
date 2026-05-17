@@ -2,6 +2,8 @@ package com.example.myapplication.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,7 @@ public class PlayActivity extends AppCompatActivity {
         if (prefillGame != null) etGameName.setText(prefillGame);
 
         findViewById(R.id.btn_play).setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_click));
             String pId = etPlayerId.getText().toString();
             String gName = etGameName.getText().toString();
             double amt = Double.parseDouble(etAmount.getText().toString());
@@ -62,8 +65,9 @@ public class PlayActivity extends AppCompatActivity {
 
     private void displayResult(Game.BetResult res) {
         ((TextView)findViewById(R.id.tv_payout)).setText(String.format("$%.2f", res.getPayout()));
-        ((TextView)findViewById(R.id.tv_net_profit)).setText(String.format("$%.2f", res.getNetProfitLoss()));
-        ((TextView)findViewById(R.id.tv_net_profit)).setTextColor(res.getNetProfitLoss() >= 0 ? 0xFF48BB78 : 0xFFE53E3E);
+        TextView tvNetProfit = findViewById(R.id.tv_net_profit);
+        tvNetProfit.setText(String.format("$%.2f", res.getNetProfitLoss()));
+        tvNetProfit.setTextColor(res.getNetProfitLoss() >= 0 ? 0xFFAEEA00 : 0xFFE53E3E);
         ((TextView)findViewById(R.id.tv_jackpot_hit)).setText(res.isJackpotHit() ? "YES! 🎉" : "NO");
         ((TextView)findViewById(R.id.tv_random_num)).setText(String.valueOf(res.getRandomNumber()));
         

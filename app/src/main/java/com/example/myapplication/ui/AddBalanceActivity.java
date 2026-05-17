@@ -2,6 +2,7 @@ package com.example.myapplication.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class AddBalanceActivity extends AppCompatActivity {
         EditText etAmount = findViewById(R.id.et_amount);
 
         findViewById(R.id.btn_add_balance).setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_click));
             String playerId = etPlayerId.getText().toString();
             String amountStr = etAmount.getText().toString();
             
