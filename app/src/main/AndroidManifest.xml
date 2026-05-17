@@ -25,6 +25,7 @@
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.PlayActivity" />
         <activity android:name=".ui.RateActivity" />
+        <activity android:name=".ui.AddBalanceActivity" />
     </application>
 
 </manifest>

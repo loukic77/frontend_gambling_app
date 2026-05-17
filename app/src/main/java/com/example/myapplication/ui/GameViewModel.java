@@ -3,8 +3,11 @@ package com.example.myapplication.ui;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.myapplication.model.*;
 import com.example.myapplication.network.GameRepository;
+import gr.aueb.dist.shared.BetRequest;
+import gr.aueb.dist.shared.Game;
+import gr.aueb.dist.shared.GameInfo;
+import gr.aueb.dist.shared.SearchFilter;
 import java.util.List;
 
 public class GameViewModel extends ViewModel {
@@ -29,16 +32,18 @@ public class GameViewModel extends ViewModel {
 
     private final GameRepository repository;
     private final MutableLiveData<UIState<List<GameInfo>>> searchState = new MutableLiveData<>(UIState.idle());
-    private final MutableLiveData<UIState<BetResult>> betState = new MutableLiveData<>(UIState.idle());
+    private final MutableLiveData<UIState<Game.BetResult>> betState = new MutableLiveData<>(UIState.idle());
     private final MutableLiveData<UIState<String>> rateState = new MutableLiveData<>(UIState.idle());
+    private final MutableLiveData<UIState<Double>> balanceState = new MutableLiveData<>(UIState.idle());
 
     public GameViewModel(GameRepository repository) {
         this.repository = repository;
     }
 
     public LiveData<UIState<List<GameInfo>>> getSearchState() { return searchState; }
-    public LiveData<UIState<BetResult>> getBetState() { return betState; }
+    public LiveData<UIState<Game.BetResult>> getBetState() { return betState; }
     public LiveData<UIState<String>> getRateState() { return rateState; }
+    public LiveData<UIState<Double>> getBalanceState() { return balanceState; }
 
     public void searchGames(int minStars, String risk, String category) {
         searchState.setValue(UIState.loading());
@@ -57,9 +62,9 @@ public class GameViewModel extends ViewModel {
 
     public void playBet(String playerId, String gameName, double amount) {
         betState.setValue(UIState.loading());
-        repository.playBet(new BetRequest(playerId, gameName, amount), new GameRepository.Callback<BetResult>() {
+        repository.playBet(new BetRequest(playerId, gameName, amount), new GameRepository.Callback<Game.BetResult>() {
             @Override
-            public void onSuccess(BetResult result) {
+            public void onSuccess(Game.BetResult result) {
                 betState.postValue(UIState.success(result));
             }
 
@@ -85,9 +90,25 @@ public class GameViewModel extends ViewModel {
         });
     }
 
+    public void addBalance(String playerId, double amount) {
+        balanceState.setValue(UIState.loading());
+        repository.addBalance(playerId, amount, new GameRepository.Callback<Double>() {
+            @Override
+            public void onSuccess(Double result) {
+                balanceState.postValue(UIState.success(result));
+            }
+
+            @Override
+            public void onError(Exception e) {
+                balanceState.postValue(UIState.error(e.getMessage()));
+            }
+        });
+    }
+
     public void resetStates() {
         searchState.setValue(UIState.idle());
         betState.setValue(UIState.idle());
         rateState.setValue(UIState.idle());
+        balanceState.setValue(UIState.idle());
     }
 }

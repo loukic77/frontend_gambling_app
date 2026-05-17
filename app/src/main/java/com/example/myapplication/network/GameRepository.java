@@ -1,6 +1,10 @@
 package com.example.myapplication.network;
 
-import com.example.myapplication.model.*;
+import gr.aueb.dist.shared.BetRequest;
+import gr.aueb.dist.shared.Game;
+import gr.aueb.dist.shared.GameInfo;
+import gr.aueb.dist.shared.Message;
+import gr.aueb.dist.shared.SearchFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -38,12 +42,12 @@ public class GameRepository {
         });
     }
 
-    public void playBet(BetRequest request, Callback<BetResult> callback) {
+    public void playBet(BetRequest request, Callback<Game.BetResult> callback) {
         executor.execute(() -> {
             try {
                 Message response = sendRequest(new Message("PLAYER_PLAY", request.getGameName(), request));
                 if ("SUCCESS".equals(response.getType())) {
-                    callback.onSuccess((BetResult) response.getPayload());
+                    callback.onSuccess((Game.BetResult) response.getPayload());
                 } else {
                     callback.onError(new Exception(response.getContent()));
                 }
@@ -59,6 +63,21 @@ public class GameRepository {
                 Message response = sendRequest(new Message("PLAYER_RATE", gameName, stars));
                 if ("SUCCESS".equals(response.getType())) {
                     callback.onSuccess(response.getContent() != null ? response.getContent() : "Success");
+                } else {
+                    callback.onError(new Exception(response.getContent()));
+                }
+            } catch (Exception e) {
+                callback.onError(e);
+            }
+        });
+    }
+
+    public void addBalance(String playerId, double amount, Callback<Double> callback) {
+        executor.execute(() -> {
+            try {
+                Message response = sendRequest(new Message("PLAYER_ADD_BALANCE", playerId, Double.valueOf(amount)));
+                if ("SUCCESS".equals(response.getType())) {
+                    callback.onSuccess((Double) response.getPayload());
                 } else {
                     callback.onError(new Exception(response.getContent()));
                 }

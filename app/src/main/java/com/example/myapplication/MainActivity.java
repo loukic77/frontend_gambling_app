@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.ui.PlayActivity;
 import com.example.myapplication.ui.RateActivity;
 import com.example.myapplication.ui.SearchActivity;
+import com.example.myapplication.ui.AddBalanceActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,13 +15,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.card_search).setOnClickListener(v -> 
-            startActivity(new Intent(this, SearchActivity.class)));
+        findViewById(R.id.card_search).setOnClickListener(v ->
+                startActivity(new Intent(this, SearchActivity.class)));
 
-        findViewById(R.id.card_play).setOnClickListener(v -> 
-            startActivity(new Intent(this, PlayActivity.class)));
+        findViewById(R.id.card_play).setOnClickListener(v ->
+                startActivity(new Intent(this, PlayActivity.class)));
 
-        findViewById(R.id.card_rate).setOnClickListener(v -> 
-            startActivity(new Intent(this, RateActivity.class)));
+        findViewById(R.id.card_rate).setOnClickListener(v ->
+                startActivity(new Intent(this, RateActivity.class)));
+
+        findViewById(R.id.card_balance).setOnClickListener(v ->
+                startActivity(new Intent(this, AddBalanceActivity.class)));
     }
 }

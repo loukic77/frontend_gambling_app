@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // In a real app, host/port should come from config or shared prefs
         GameRepository repository = new GameRepository("10.0.2.2", 6000);
-        viewModel = new GameViewModel(repository); 
+        viewModel = new GameViewModel(repository);
 
         progressBar = findViewById(R.id.progress_bar);
         RecyclerView recyclerView = findViewById(R.id.rv_games);
@@ -42,7 +42,8 @@ public class SearchActivity extends AppCompatActivity {
         EditText etCategory = findViewById(R.id.et_category);
 
         findViewById(R.id.btn_search).setOnClickListener(v -> {
-            int stars = Integer.parseInt(etStars.getText().toString());
+            String starsText = etStars.getText().toString();
+            int stars = starsText.isEmpty() ? 0 : Integer.parseInt(starsText);
             String risk = etRisk.getText().toString();
             String cat = etCategory.getText().toString();
             viewModel.searchGames(stars, risk, cat);

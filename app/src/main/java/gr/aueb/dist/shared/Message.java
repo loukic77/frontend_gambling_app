@@ -1,5 +1,4 @@
-package com.example.myapplication.model;
-
+package gr.aueb.dist.shared;
 
 import java.io.Serializable;
 

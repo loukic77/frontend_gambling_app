@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.network.GameRepository;
+import gr.aueb.dist.shared.Game;
 
 public class PlayActivity extends AppCompatActivity {
 
@@ -59,11 +60,19 @@ public class PlayActivity extends AppCompatActivity {
         });
     }
 
-    private void displayResult(com.example.myapplication.model.BetResult res) {
+    private void displayResult(Game.BetResult res) {
         ((TextView)findViewById(R.id.tv_payout)).setText(String.format("$%.2f", res.getPayout()));
         ((TextView)findViewById(R.id.tv_net_profit)).setText(String.format("$%.2f", res.getNetProfitLoss()));
         ((TextView)findViewById(R.id.tv_net_profit)).setTextColor(res.getNetProfitLoss() >= 0 ? 0xFF48BB78 : 0xFFE53E3E);
         ((TextView)findViewById(R.id.tv_jackpot_hit)).setText(res.isJackpotHit() ? "YES! 🎉" : "NO");
         ((TextView)findViewById(R.id.tv_random_num)).setText(String.valueOf(res.getRandomNumber()));
+        
+        TextView tvBalance = findViewById(R.id.tv_balance);
+        if (!Double.isNaN(res.getRemainingBalance())) {
+            tvBalance.setText(String.format("$%.2f", res.getRemainingBalance()));
+            tvBalance.setVisibility(View.VISIBLE);
+        } else {
+            tvBalance.setText("N/A");
+        }
     }
 }

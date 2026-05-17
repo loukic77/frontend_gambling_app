@@ -123,9 +123,21 @@
                         <TextView android:id="@+id/tv_jackpot_hit" android:textStyle="bold" android:gravity="end"/>
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow android:layout_marginBottom="8dp">
                         <TextView android:text="Random Num: " android:textColor="#718096"/>
                         <TextView android:id="@+id/tv_random_num" android:gravity="end"/>
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E2E8F0"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TableRow>
+                        <TextView android:text="Remaining Balance: " android:textColor="#718096" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tv_balance" android:textStyle="bold" android:textColor="#2D3748" android:gravity="end"/>
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
